@@ -1,0 +1,6 @@
+name: aws_comunity_day_2023
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: ECS Fargate sample api to test AWS autoscaling capabilities

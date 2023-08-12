@@ -1,0 +1,28 @@
+# https://medium.com/swlh/beautiful-load-testing-with-k6-and-docker-compose-4454edb3a2e3
+services:
+  k6:
+    image: grafana/k6:latest
+    ports:
+      - "6565:6565"
+    volumes:
+      - ./scripts:/scripts
+    environment:
+    - AWS_COMMUNITY_DAY_LB_DNS_NAME=$AWS_COMMUNITY_DAY_LB_DNS_NAME
+    - AWS_COMMUNITY_DAY_API_ENDPOINT=cpu_intensive
+    - AWS_COMMUNITY_DAY_API_ENDPOINT_PARAM=iterations=80
+    - SCENARIO=Scenario_2
+
+# Experiment 1 (target tracking cpu)
+    # - AWS_COMMUNITY_DAY_API_ENDPOINT=cpu_intensive
+    # - AWS_COMMUNITY_DAY_API_ENDPOINT_PARAM=iterations=80
+    # - SCENARIO=Scenario_1
+
+# Experiment 2 (target tracking cpu)
+    # - AWS_COMMUNITY_DAY_API_ENDPOINT=memory_intensive
+    # - AWS_COMMUNITY_DAY_API_ENDPOINT_PARAM=memory_mb=200
+    # - SCENARIO=Scenario_1
+
+# Experiment 3 and 4 (target tracking and step scaling request count )
+    # - AWS_COMMUNITY_DAY_API_ENDPOINT=cpu_intensive
+    # - AWS_COMMUNITY_DAY_API_ENDPOINT_PARAM=iterations=80
+    # - SCENARIO=Scenario_2
